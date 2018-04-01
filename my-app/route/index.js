@@ -1,13 +1,14 @@
 const Koa = require('koa');
 const app = new Koa();
 
+
 //router
 const koaRouter = require('koa-router');
 const router = koaRouter();
 
 
 app.use(router['routes']());
-router.get('/main', (ctx, next) => {
+router.get('/coinMarketData', (ctx, next) => {
     ctx.body = 'Hello Koa2.0!';
 })
 

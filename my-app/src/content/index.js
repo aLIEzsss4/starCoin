@@ -1,19 +1,41 @@
 import React, { Component } from 'react';
-const Fabric = require('office-ui-fabric-react');
-
-
-
+import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import './index.css'
 
 
 class BitCoinDataContent extends Component {
+    constructor() {
+        super()
+        let ctx = this;
+        this.state = {
+            typingCoin: String
+        }
+    }
+    //搜索当前交易量
+    searchCoin() {
+        
+
+
+    }
+
+    //输入框内容
+    onChangeCoin(e) {
+        console.log(this);
+        this.setState({
+            typingCoin: e
+        })
+
+    }
     render() {
         return (
             <div className="BitCoinDataContent">
-                <div class="ms-Grid">
-                    <div class="ms-Grid-row">
-                        <div class="ms-Grid-col ms-sm6 ms-md4 ms-lg2">A</div>
-                        <div class="ms-Grid-col ms-sm6 ms-md8 ms-lg10">B</div>
-                    </div>
+                <div className="BitCoinDataContent-searchBar">
+                    <TextField
+                        placeholder='I am a placeholder.'
+                        ariaLabel='Please enter text here'
+                        onChanged={this.onChangeCoin.bind(this)}
+                    />
+                    <button className="BitCoinDataContent-searchBar-btn" onClick={this.searchCoin}>search</button>
                 </div>
             </div>
         );

@@ -1,0 +1,19 @@
+.BitCoinDataContent{
+    margin-top: 30px;
+}
+.BitCoinDataContent-searchBar{
+    width:400px;
+    margin: 0 auto;
+}
+.ms-TextField-fieldGroup{
+    height:50px;
+}
+.BitCoinDataContent-searchBar-btn{
+    margin-top: 10px;
+    float: right;
+    width: 100px;
+    height: 30px;
+    background-color: #0078d4;
+    color: #fff;
+    border: 0;
+}
