@@ -12,7 +12,7 @@ class App extends Component {
         <header className="App-header">
           BitCoinData
         </header>
-          <BitCoinDataContent />
+          <BitCoinDataContent/>
       </div>
     );
   }

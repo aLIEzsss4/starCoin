@@ -1,29 +1,19 @@
 const Koa = require('koa');
-const cors = require('koa2-cors');
-const bodyParse = require('koa-bodyparser');
 const app = new Koa();
-//databasefunction
 const getCoinmarketData = require('./coinmarketData/getCoinMarketData')
-
 //router
-const koaRouter = require('koa-route');
-
-//bodyParse
-app.use(bodyParse({
-    enableTypes: ['json', 'form']
-}))
-
-//跨域
+const router = require('koa-router')();
+//bodyparse
+const koaBody = require('koa-body');
+//cors
+const cors = require('koa2-cors')
 app.use(cors());
 
-const coinMarketData = async ctx => {
+router.post('/coinMarketData', koaBody(), async (ctx) => {
+    console.log(ctx.request.body)
     ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
-    const result = await getCoinmarketData();
+    const result = await getCoinmarketData(ctx.request.body.name);
     ctx.body = JSON.stringify(result)
-}
-app.use(koaRouter.post('/coinMarketData', coinMarketData))
-app.use(async ctx => {
-    ctx.body = 'Hello World';
-});
+})
 
 app.listen(3001);

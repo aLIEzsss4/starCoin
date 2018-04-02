@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import * as React from "react"
+import { Component } from 'react';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { Table } from 'antd'
 import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
@@ -10,44 +11,55 @@ class BitCoinDataContent extends Component {
         super()
         let ctx = this;
         this.state = {
-            typingCoin: String,
+            typingCoin: '' || 'bitcoin',
             tableData: null,
             dataSource: [{
                 key: '1',
-                name: '胡彦斌',
-                age: 32,
-                address: '西湖区湖底公园1号'
+                name: String,
+                fifmin: Number,
+                twoHours: Number,
+                sixHours: Number,
+                oneDay: Number,
+                market_cap_cny: Number
+
             }, {
                 key: '2',
-                name: '胡彦祖',
-                age: 42,
-                address: '西湖区湖底公园1号'
+                name: String,
+                fifmin: Number,
+                twoHours: Number,
+                sixHours: Number,
+                oneDay: Number,
+                market_cap_cny: Number
             }],
 
             columns: [{
                 title: '币种',
                 dataIndex: 'name',
-                key: 'coinCate',
+                key: 'name',
             }, {
                 title: '15分钟前',
-                dataIndex: 'age',
-                key: 'fifMinAgo',
+                dataIndex: 'fifmin',
+                key: 'fifmin',
             }, {
                 title: '2小时前',
-                dataIndex: 'address',
-                key: 'twoHourAgo',
+                dataIndex: 'twoHour',
+                key: 'twoHour',
             },
             {
                 title: '6小时前',
-                dataIndex: 'address',
-                key: 'sixHourAgo',
+                dataIndex: 'sixHour',
+                key: 'sixHour',
             },
             {
                 title: '一天前',
-                dataIndex: 'address',
-                key: 'oneDayAgo',
+                dataIndex: 'oneDay',
+                key: 'oneDay',
             }],
         }
+    }
+
+    componentWillMount() {
+        this.searchCoin();
     }
     //搜索当前交易量
     searchCoin() {
@@ -59,22 +71,42 @@ class BitCoinDataContent extends Component {
             },
             method: 'POST',
             mode: 'cors',
-        }).then((err, res) => {
-            if (err) {
-                console.log(err)
+        }).then(response => {
+            if (response.ok) {
+                return response.json()
             } else {
-                res.json()
+                return Promise.reject('something went wrong')
             }
-        })
+        }).then(data => {
+            this.setState({
+                tableData: data
+            }, this.makeTable())
+        }).catch(error => console.log(error))
     }
 
     //输入框内容
     onChangeCoin(e) {
-        console.log(this);
         this.setState({
             typingCoin: e
         })
 
+    }
+    makeTable() {
+        console.log(this.state)
+        console.log('second')
+        //     this.state.tableData.map(index => {
+        //         this.setState({
+        //             dataSource: [{
+        //                 key: index._id,
+        //                 name: index.name,
+        //                 fifmin: index.price_cny,
+        //                 twoHours: index.price_cny,
+        //                 sixHours: index.price_cny,
+        //                 oneDay: index.price_cny,
+        //                 market_cap_cny: index.price_cny
+        //             }]
+        //         })
+        //     })
     }
 
     //tableData
@@ -93,9 +125,9 @@ class BitCoinDataContent extends Component {
                 <div className="BitCoinDataContent-searchBar-table">
                     <p>资金量变化图表</p>
                     <Table dataSource={this.state.dataSource} columns={this.state.columns} />
-                    {/* <p>当前资金量价格变化</p>
+                    <p>当前资金量价格变化</p>
                     <Table dataSource={this.state.dataSource} columns={this.state.columns} />
-                    <p>预测</p> */}
+                    <p>预测</p>
                 </div>
             </div>
         );

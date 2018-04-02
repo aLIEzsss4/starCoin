@@ -13,8 +13,8 @@ let CoinmarketDataModel = mongoose.model('CoinmarketDataModel', coinmarketDataSc
 //获取单个coin
 module.exports = function getDataFromCoinMartetDataBase(singleCoin) {
     let result = new Promise((resolve, reject) => {
-        CoinmarketDataModel.find({ 'id': 'bitcoin' }, (err, res) => {
-            console.log(singleCoin)
+        CoinmarketDataModel.find({ 'id': singleCoin }, (err, res) => {
+            //console.log(singleCoin)
             if (err) {
                 console.log(err + 'this is an err!')
             } else {
