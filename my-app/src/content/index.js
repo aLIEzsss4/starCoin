@@ -13,24 +13,7 @@ class BitCoinDataContent extends Component {
         this.state = {
             typingCoin: '' || 'bitcoin',
             tableData: null,
-            dataSource: [{
-                key: '1',
-                name: String,
-                fifmin: Number,
-                twoHours: Number,
-                sixHours: Number,
-                oneDay: Number,
-                market_cap_cny: Number
-
-            }, {
-                key: '2',
-                name: String,
-                fifmin: Number,
-                twoHours: Number,
-                sixHours: Number,
-                oneDay: Number,
-                market_cap_cny: Number
-            }],
+            dataSource: [],
 
             columns: [{
                 title: '币种',
@@ -42,13 +25,13 @@ class BitCoinDataContent extends Component {
                 key: 'fifmin',
             }, {
                 title: '2小时前',
-                dataIndex: 'twoHour',
-                key: 'twoHour',
+                dataIndex: 'twoHours',
+                key: 'twoHours',
             },
             {
                 title: '6小时前',
-                dataIndex: 'sixHour',
-                key: 'sixHour',
+                dataIndex: 'sixHours',
+                key: 'sixHours',
             },
             {
                 title: '一天前',
@@ -67,7 +50,7 @@ class BitCoinDataContent extends Component {
             body: JSON.stringify({ "name": this.state.typingCoin }),
             cache: 'no-cache',
             headers: {
-                'content-type': 'application/xml'
+                'content-type': 'application/json'
             },
             method: 'POST',
             mode: 'cors',
@@ -92,21 +75,37 @@ class BitCoinDataContent extends Component {
 
     }
     makeTable() {
+        let tableData = [];
+        let tableDataTemp = {
+            name: 'String',
+            fifmin: 133,
+            twoHours: 122,
+            sixHours: 222,
+            oneDay: 333,
+        }
         console.log(this.state)
-        console.log('second')
-        //     this.state.tableData.map(index => {
-        //         this.setState({
-        //             dataSource: [{
-        //                 key: index._id,
-        //                 name: index.name,
-        //                 fifmin: index.price_cny,
-        //                 twoHours: index.price_cny,
-        //                 sixHours: index.price_cny,
-        //                 oneDay: index.price_cny,
-        //                 market_cap_cny: index.price_cny
-        //             }]
-        //         })
-        //     })
+        console.log('second');
+        if (this.state.tableData != null) {
+            this.state.tableData.map((dataIndex, index) => {
+                console.log(index)
+                if (index == 0) {
+                    tableDataTemp.key = index;
+                    tableDataTemp.name = dataIndex.name;
+                    tableDataTemp.fifmin = dataIndex.market_cap_cny;
+                } else if (index == 13) {
+                    tableDataTemp.twoHours = dataIndex.market_cap_cny;
+                } else if (index == 26) {
+                    tableDataTemp.sixHours = dataIndex.market_cap_cny;
+                } else if (index == 289) {
+                    tableDataTemp.oneDay = dataIndex.market_cap_cny;
+                }
+                console.log(tableDataTemp)
+            }, this.setState({
+                dataSource: [tableDataTemp]
+            }))
+        } else {
+
+        }
     }
 
     //tableData

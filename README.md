@@ -15,7 +15,7 @@
 ## 产品逻辑
 * coinmarketData 前端呈现当前进入资金量，15分，2小时，6小时，一天。
 后端通过coinmarketapirestapi获取数据。2018.4.1.
-监控流入资金量，占所有资金量的百分比。数据库逻辑：一天24小时，一共1440分钟，每十五分钟取一条，一共取288条，为了保险加一条。
+监控流入资金量，占所有资金量的百分比。数据库逻辑：一天24小时，一共1440分钟，每十五分钟取一条，一共取288条，为了保险加一条，也就是说需要第1，13，25，289个数据。
 
 ## 18.4.01晚22.39 C:\Users\Josex\Desktop\starCoin\my-app\src\content\index.js 文件中this绑定问题，need keep in mind
 ## 巨坑，一定分清koa-router和koa-route。koa-router会莫名其妙多出一个类型为text/plain的请求。

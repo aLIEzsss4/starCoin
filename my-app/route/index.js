@@ -5,7 +5,6 @@ const getCoinmarketData = require('./coinmarketData/getCoinMarketData')
 const router = require('koa-router')();
 //bodyparse
 const koaBody = require('koa-body');
-//cors
 const cors = require('koa2-cors')
 app.use(cors());
 
@@ -15,5 +14,7 @@ router.post('/coinMarketData', koaBody(), async (ctx) => {
     const result = await getCoinmarketData(ctx.request.body.name);
     ctx.body = JSON.stringify(result)
 })
+
+app.use(router.routes());
 
 app.listen(3001);
