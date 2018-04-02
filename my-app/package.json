@@ -3,14 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ant-design": "^1.0.0",
+    "antd": "^3.4.0",
     "date-fns": "^1.29.0",
     "koa": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-cors": "0.0.16",
+    "koa-route": "^3.2.0",
     "koa-router": "^7.4.0",
+    "koa2-cors": "^2.0.5",
     "mongoose": "^5.0.12",
     "office-ui-fabric-react": "^5.76.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-scripts": "1.1.1",
+    "react-table": "^6.8.0",
     "superagent": "^3.8.2"
   },
   "scripts": {

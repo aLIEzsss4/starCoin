@@ -1,14 +1,17 @@
-.BitCoinDataContent{
+.BitCoinDataContent {
     margin-top: 30px;
 }
-.BitCoinDataContent-searchBar{
-    width:400px;
+
+.BitCoinDataContent-searchBar {
+    width: 400px;
     margin: 0 auto;
 }
-.ms-TextField-fieldGroup{
-    height:50px;
+
+.ms-TextField-fieldGroup {
+    height: 50px;
 }
-.BitCoinDataContent-searchBar-btn{
+
+.BitCoinDataContent-searchBar-btn {
     margin-top: 10px;
     float: right;
     width: 100px;
@@ -16,4 +19,14 @@
     background-color: #0078d4;
     color: #fff;
     border: 0;
+}
+
+.BitCoinDataContent-searchBar-table {
+    width: 70%;
+    margin:60px auto;
+}
+
+.BitCoinDataContent-searchBar-table .ant-table-thead th {
+    background: #03A9F4;
+    color: #fff;
 }

@@ -4,31 +4,12 @@ get coinmarket data and save data to mongodb
 const superagent = require('superagent');
 const getTime = require('date-fns/get_time');
 const mongoose = require('mongoose');
+const mongodbSchema = require('../mongdb')
 let Schema = mongoose.Schema;
 mongoose.connect('mongodb://localhost/coinmarketData');
 
 //conmarketDataSchema
-let coinmarketDataSchema = new Schema({
-    "time": Number,
-    "id": String,
-    "name": String,
-    "symbol": String,
-    "rank": Number,
-    "price_usd": Number,
-    "price_btc": Number,
-    "24h_volume_usd": Number,
-    "market_cap_usd": Number,
-    "available_supply": Number,
-    "total_supply": Number,
-    "max_supply": Number,
-    "percent_change_1h": Number,
-    "percent_change_24h": Number,
-    "percent_change_7d": Number,
-    "last_updated": Number,
-    "price_cny": Number,
-    "24h_volume_cny": Number,
-    "market_cap_cny": Number
-})
+let coinmarketDataSchema = new Schema(mongodbSchema.coinmarketDataSchema)
 let CoinmarketDataModel = mongoose.model('CoinmarketDataModel', coinmarketDataSchema);
 
 class saveCoinmarketData {
