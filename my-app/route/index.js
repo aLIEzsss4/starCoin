@@ -10,7 +10,7 @@ app.use(cors());
 
 router.post('/coinMarketData', koaBody(), async (ctx) => {
     console.log(ctx.request.body)
-    ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+    ctx.set('Access-Control-Allow-Origin', 'http://23.105.217.209');
     const result = await getCoinmarketData(ctx.request.body.name);
     ctx.body = JSON.stringify(result)
 })
