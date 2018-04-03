@@ -46,7 +46,7 @@ class BitCoinDataContent extends Component {
     }
     //搜索当前交易量
     searchCoin() {
-        fetch('http://localhost:3001/coinMarketData', {
+        fetch('http://23.105.217.209:3001/coinMarketData', {
             body: JSON.stringify({ "name": this.state.typingCoin }),
             cache: 'no-cache',
             headers: {
