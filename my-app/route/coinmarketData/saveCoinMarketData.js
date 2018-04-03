@@ -17,7 +17,7 @@ class saveCoinmarketData {
         let ctx = this;
     }
     getCoinmarketData() {
-        superagent.get('https://api.coinmarketcap.com/v1/ticker/?convert=CNY&limit=10').end((err, res) => {
+        superagent.get('https://api.coinmarketcap.com/v1/ticker/?convert=CNY&limit=1000').end((err, res) => {
             if (err) {
                 console.log(err)
             } else {
