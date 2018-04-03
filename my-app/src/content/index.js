@@ -77,11 +77,11 @@ class BitCoinDataContent extends Component {
     makeTable() {
         let tableData = [];
         let tableDataTemp = {
-            name: 'String',
-            fifmin: 133,
-            twoHours: 122,
-            sixHours: 222,
-            oneDay: 333,
+            name: '//',
+            fifmin: '//',
+            twoHours: '//',
+            sixHours: '//',
+            oneDay: '//',
         }
         console.log(this.state)
         console.log('second');
@@ -96,7 +96,7 @@ class BitCoinDataContent extends Component {
                     tableDataTemp.twoHours = dataIndex.market_cap_cny;
                 } else if (index == 26) {
                     tableDataTemp.sixHours = dataIndex.market_cap_cny;
-                } else if (index == 289) {
+                } else if (index == 288) {
                     tableDataTemp.oneDay = dataIndex.market_cap_cny;
                 }
                 console.log(tableDataTemp)
@@ -115,7 +115,7 @@ class BitCoinDataContent extends Component {
             <div className="BitCoinDataContent">
                 <div className="BitCoinDataContent-searchBar">
                     <TextField
-                        placeholder='I am a placeholder.'
+                        placeholder='input your coin.'
                         ariaLabel='Please enter text here'
                         onChanged={this.onChangeCoin.bind(this)}
                     />
@@ -125,8 +125,11 @@ class BitCoinDataContent extends Component {
                     <p>资金量变化图表</p>
                     <Table dataSource={this.state.dataSource} columns={this.state.columns} />
                     <p>当前资金量价格变化</p>
-                    <Table dataSource={this.state.dataSource} columns={this.state.columns} />
+
                     <p>预测</p>
+                    <p>当前版本为beta版，下一板块为价格变化和明星币种预测，请加下面群反映问题和建议</p>
+                    <p>急需建议，这个产品得idea目前只有根据量级变化预测价格，但是我感觉依靠大数据可以分析出更多的东西。希望有好的建议提交给我，一起建设一个为散户服务的产品！</p>
+                    <p className="wechat-piuture"><img src="https://s1.ax1x.com/2018/04/03/CpNOSI.jpg" /></p>
                 </div>
             </div>
         );
