@@ -129,7 +129,7 @@ class BitCoinDataContent extends Component {
                     <p>预测</p>
                     <p>当前版本为beta版，下一板块为价格变化和明星币种预测，请加下面群反映问题和建议</p>
                     <p>急需建议，这个产品得idea目前只有根据量级变化预测价格，但是我感觉依靠大数据可以分析出更多的东西。希望有好的建议提交给我，一起建设一个为散户服务的产品！</p>
-                    <p className="wechat-piuture"><img src="https://s1.ax1x.com/2018/04/03/CpNOSI.jpg" /></p>
+                    <p className="wechat-piuture"><img src="https://s1.ax1x.com/2018/04/04/Cpc06e.png" /></p>
                 </div>
             </div>
         );
