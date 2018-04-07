@@ -17,6 +17,10 @@
 后端通过coinmarketapirestapi获取数据。2018.4.1.
 监控流入资金量，占所有资金量的百分比。数据库逻辑：一天24小时，一共1440分钟，每十五分钟取一条，一共取288条，为了保险加一条，也就是说需要第1，13，25，289个数据。
 
-## 18.4.01晚22.39 C:\Users\Josex\Desktop\starCoin\my-app\src\content\index.js 文件中this绑定问题，need keep in mind
-## 巨坑，一定分清koa-router和koa-route。koa-router会莫名其妙多出一个类型为text/plain的请求。
-## C:\Users\Josex\Desktop\starCoin\my-app\route\coinmarketData\getCoinMarketData.js 文件中promise的resolve和reject的顺序不能颠倒，否则报错。
+## bug
+
+* 18.4.01晚22.39 C:\Users\Josex\Desktop\starCoin\my-app\src\content\index.js 文件中this绑定问题，need keep in mind
+* 巨坑，一定分清koa-router和koa-route。koa-router会莫名其妙多出一个类型为text/plain的请求。
+* C:\Users\Josex\Desktop\starCoin\my-app\route\coinmarketData\getCoinMarketData.js 文件中promise的resolve和reject的顺序不能颠倒，否则报错。
+* 修复找寻币种使用name，改为symbol 2018.0404
+* 修复table组件重复访问的bug 2018.0404

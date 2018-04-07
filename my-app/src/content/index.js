@@ -1,5 +1,7 @@
 import * as React from "react"
 import { Component } from 'react';
+import _ from 'lodash';
+import superagent from 'superagent';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { Table } from 'antd'
 import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
@@ -9,10 +11,11 @@ import './index.css'
 class BitCoinDataContent extends Component {
     constructor() {
         super()
-        let ctx = this;
+        const ctx = this;
+        this.temTableData = []
         this.state = {
-            typingCoin: '' || 'bitcoin',
-            tableData: null,
+            typingCoin: null || 'bitcoin',
+            tableData: [],
             dataSource: [],
 
             columns: [{
@@ -41,13 +44,34 @@ class BitCoinDataContent extends Component {
         }
     }
 
-    componentWillMount() {
-        this.searchCoin();
-    }
+    // componentWillMount() {
+    //     this.searchCoin()
+    // }
+    // componentWillUpdate() {
+    //     this.searchCoin()
+
+    // }
     //搜索当前交易量
     searchCoin() {
+
+        // superagent.post('http://localhost:3001/coinMarketData')
+        //     .set('Content-Type', 'application/json')
+        //     .send({ "name": this.state.typingCoin.toUpperCase() })
+        //     .end((err, res) => {
+        //         if (err) {
+        //             console.log(err)
+        //         } else {
+        //             this.setState({
+        //                 tableData: this.state.tableData.concat(res.body)
+        //             }, () => this.makeTable()
+        //             )
+        //         }
+        //     })
+        console.log(this)
+        console.log('outterthis')
         fetch('http://23.105.217.209:3001/coinMarketData', {
-            body: JSON.stringify({ "name": this.state.typingCoin }),
+            // fetch('http://localhost:3001/coinMarketData', {
+            body: JSON.stringify({ "name": this.state.typingCoin.toUpperCase() }),
             cache: 'no-cache',
             headers: {
                 'content-type': 'application/json'
@@ -61,10 +85,13 @@ class BitCoinDataContent extends Component {
                 return Promise.reject('something went wrong')
             }
         }).then(data => {
+            console.log(this);
+            console.log('innerthis')
             this.setState({
                 tableData: data
-            }, this.makeTable())
+            }, () => this.makeTable())
         }).catch(error => console.log(error))
+
     }
 
     //输入框内容
@@ -75,6 +102,8 @@ class BitCoinDataContent extends Component {
 
     }
     makeTable() {
+        console.log(this.state.tableData);
+        console.log('just for try')
         let tableData = [];
         let tableDataTemp = {
             name: '//',
@@ -83,11 +112,8 @@ class BitCoinDataContent extends Component {
             sixHours: '//',
             oneDay: '//',
         }
-        console.log(this.state)
-        console.log('second');
-        if (this.state.tableData != null) {
+        if (this.state.tableData.length != 0) {
             this.state.tableData.map((dataIndex, index) => {
-                console.log(index)
                 if (index == 0) {
                     tableDataTemp.key = index;
                     tableDataTemp.name = dataIndex.name;
@@ -99,13 +125,43 @@ class BitCoinDataContent extends Component {
                 } else if (index == 288) {
                     tableDataTemp.oneDay = dataIndex.market_cap_cny;
                 }
-                console.log(tableDataTemp)
             }, this.setState({
                 dataSource: [tableDataTemp]
             }))
         } else {
 
         }
+    }
+    clearData() {
+        this.setState({
+            typingCoin: '' || 'bitcoin',
+            tableData: null,
+            dataSource: [],
+
+            columns: [{
+                title: '币种',
+                dataIndex: 'name',
+                key: 'name',
+            }, {
+                title: '15分钟前',
+                dataIndex: 'fifmin',
+                key: 'fifmin',
+            }, {
+                title: '2小时前',
+                dataIndex: 'twoHours',
+                key: 'twoHours',
+            },
+            {
+                title: '6小时前',
+                dataIndex: 'sixHours',
+                key: 'sixHours',
+            },
+            {
+                title: '一天前',
+                dataIndex: 'oneDay',
+                key: 'oneDay',
+            }],
+        })
     }
 
     //tableData
