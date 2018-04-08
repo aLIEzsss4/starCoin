@@ -43,7 +43,20 @@ class BitCoinDataContent extends Component {
                 title: '一天前',
                 dataIndex: 'oneDay',
                 key: 'oneDay',
-            }],
+            },
+            {
+                title: '三天前',
+                dataIndex: 'threeDay',
+                key: 'threeDay',
+            },
+            {
+                title: '五天前',
+                dataIndex: 'fiveDay',
+                key: 'fiveDay',
+            }
+
+
+            ],
         }
     }
 
@@ -120,9 +133,12 @@ class BitCoinDataContent extends Component {
                 } else if (index == 26) {
                     tableDataTemp.sixHours = dataIndex.market_cap_cny;
                     tableDataTempPrice.sixHours = dataIndex.price_cny;
+                } else if (index == 96) {
+                    tableDataTemp.threeDay = dataIndex.market_cap_cny;
+                    tableDataTempPrice.threeDay = dataIndex.price_cny;
                 } else if (index == 288) {
-                    tableDataTemp.oneDay = dataIndex.market_cap_cny;
-                    tableDataTempPrice.oneDay = dataIndex.price_cny;
+                    tableDataTemp.fiveDay = dataIndex.market_cap_cny;
+                    tableDataTempPrice.fiveDay = dataIndex.price_cny;
                 }
             }, this.setState({
                 dataSource: [tableDataTemp],
@@ -160,7 +176,18 @@ class BitCoinDataContent extends Component {
                 title: '一天前',
                 dataIndex: 'oneDay',
                 key: 'oneDay',
-            }],
+            },
+            {
+                title: '三天前',
+                dataIndex: 'threeDay',
+                key: 'threeDay',
+            },
+            {
+                title: '五天前',
+                dataIndex: 'fiveDay',
+                key: 'fiveDay',
+            }
+            ],
         })
     }
 

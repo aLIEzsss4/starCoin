@@ -23,7 +23,7 @@ module.exports = function getDataFromCoinMartetDataBase(singleCoin) {
                 console.log('this is res')
                 resolve(res);
             }
-        }).sort("-time").limit(289)
+        }).sort("-time").limit(489)
     })
     return result;
 }
