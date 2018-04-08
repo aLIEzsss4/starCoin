@@ -25,7 +25,8 @@ class TodayCoin extends Component {
 
         Animation.to(refNodeText, 0.3, {
             opacity: 1,
-            color: '#fff'
+            color: '#fff',
+            background:'#3f51b5'
         })
 
     }

@@ -5,11 +5,14 @@
     border-radius: 4px;
     margin: 0 auto;
 }
-.BitCoinDataContent-todayCoin-content-coverText{
-    color:#fff;
+
+.BitCoinDataContent-todayCoin-content-coverText {
+    color: #fff;
     line-height: 100px;
 }
 
 .BitCoinDataContent-todayCoin-content-text {
+    height: 100px;
+    border-radius: 4px;
     opacity: 0;
 }

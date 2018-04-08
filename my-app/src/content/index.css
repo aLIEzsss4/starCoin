@@ -28,7 +28,7 @@
 }
 
 .BitCoinDataContent-searchBar-table .ant-table-thead th {
-    background: rgba(0, 0, 0, .85);
+    background: #3f51b5;
     color: #fff;
 }
 
@@ -43,6 +43,6 @@
     height: 100%;
 }
 
-.BitCoinDataContent-foot{
+.BitCoinDataContent-foot {
     margin-top: 100px;
 }

@@ -134,9 +134,12 @@ class BitCoinDataContent extends Component {
                     tableDataTemp.sixHours = dataIndex.market_cap_cny;
                     tableDataTempPrice.sixHours = dataIndex.price_cny;
                 } else if (index == 96) {
+                    tableDataTemp.oneDay = dataIndex.market_cap_cny;
+                    tableDataTempPrice.oneDay = dataIndex.price_cny;
+                } else if (index == 288) {
                     tableDataTemp.threeDay = dataIndex.market_cap_cny;
                     tableDataTempPrice.threeDay = dataIndex.price_cny;
-                } else if (index == 288) {
+                } else if (index == 480) {
                     tableDataTemp.fiveDay = dataIndex.market_cap_cny;
                     tableDataTempPrice.fiveDay = dataIndex.price_cny;
                 }
@@ -211,10 +214,11 @@ class BitCoinDataContent extends Component {
                     <Table dataSource={this.state.dataSourcePrice} columns={this.state.columns} />
                 </div>
                 <div className="BitCoinDataContent-todayCoin">
+                    <p>今日明星币种(盈亏自负)</p>
                     <TodayCoin />
                 </div>
                 <div className="BitCoinDataContent-foot">
-                    <p>当前版本为beta版，下一板块为价格变化和明星币种预测，请加下面群反映问题和建议</p>
+                    <p>当前版本为alpha版，明星币种预测已经上线。</p>
                     <p>急需建议，这个产品得idea目前只有根据量级变化预测价格，但是我感觉依靠大数据可以分析出更多的东西。希望有好的建议提交给我，一起建设一个为散户服务的产品！</p>
                     <p className="wechat-piuture"><a href="https://t.zsxq.com/7YVZVzz">我正在「Gakki 带你去月球」和朋友们讨论有趣的话题，你⼀起来吧</a></p>
                 </div>
