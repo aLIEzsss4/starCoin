@@ -2,6 +2,7 @@
 * 使用react构建
 * 前端请求使用fetch
 * 前端ui使用fabric
+* 动画库使用gsap
 ## 后端
 * 解析fetchbody使用koa-parse
 * 跨域使用koa-cors
@@ -24,3 +25,4 @@
 * C:\Users\Josex\Desktop\starCoin\my-app\route\coinmarketData\getCoinMarketData.js 文件中promise的resolve和reject的顺序不能颠倒，否则报错。
 * 修复找寻币种使用name，改为symbol 2018.0404
 * 修复table组件重复访问的bug 2018.0404
+* setState箭头函数绑定词法作用域

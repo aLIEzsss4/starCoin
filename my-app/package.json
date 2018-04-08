@@ -6,6 +6,7 @@
     "ant-design": "^1.0.0",
     "antd": "^3.4.0",
     "date-fns": "^1.29.0",
+    "gsap": "^1.20.4",
     "koa": "^2.5.0",
     "koa-better-body": "^3.0.4",
     "koa-better-router": "^2.1.1",

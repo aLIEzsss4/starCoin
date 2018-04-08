@@ -7,6 +7,8 @@ import { Table } from 'antd'
 import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
 import './index.css'
 
+import TodayCoin from './todayCoin/index'
+
 
 class BitCoinDataContent extends Component {
     constructor() {
@@ -17,6 +19,7 @@ class BitCoinDataContent extends Component {
             typingCoin: null || 'bitcoin',
             tableData: [],
             dataSource: [],
+            dataSourcePrice: [],
 
             columns: [{
                 title: '币种',
@@ -53,22 +56,6 @@ class BitCoinDataContent extends Component {
     // }
     //搜索当前交易量
     searchCoin() {
-
-        // superagent.post('http://localhost:3001/coinMarketData')
-        //     .set('Content-Type', 'application/json')
-        //     .send({ "name": this.state.typingCoin.toUpperCase() })
-        //     .end((err, res) => {
-        //         if (err) {
-        //             console.log(err)
-        //         } else {
-        //             this.setState({
-        //                 tableData: this.state.tableData.concat(res.body)
-        //             }, () => this.makeTable()
-        //             )
-        //         }
-        //     })
-        console.log(this)
-        console.log('outterthis')
         fetch('http://23.105.217.209:3001/coinMarketData', {
             // fetch('http://localhost:3001/coinMarketData', {
             body: JSON.stringify({ "name": this.state.typingCoin.toUpperCase() }),
@@ -88,7 +75,7 @@ class BitCoinDataContent extends Component {
             console.log(this);
             console.log('innerthis')
             this.setState({
-                tableData: data
+                tableData: data,
             }, () => this.makeTable())
         }).catch(error => console.log(error))
 
@@ -102,10 +89,15 @@ class BitCoinDataContent extends Component {
 
     }
     makeTable() {
-        console.log(this.state.tableData);
-        console.log('just for try')
         let tableData = [];
         let tableDataTemp = {
+            name: '//',
+            fifmin: '//',
+            twoHours: '//',
+            sixHours: '//',
+            oneDay: '//',
+        }
+        let tableDataTempPrice = {
             name: '//',
             fifmin: '//',
             twoHours: '//',
@@ -118,15 +110,23 @@ class BitCoinDataContent extends Component {
                     tableDataTemp.key = index;
                     tableDataTemp.name = dataIndex.name;
                     tableDataTemp.fifmin = dataIndex.market_cap_cny;
+
+                    tableDataTempPrice.key = index;
+                    tableDataTempPrice.name = dataIndex.name;
+                    tableDataTempPrice.fifmin = dataIndex.price_cny;
                 } else if (index == 13) {
                     tableDataTemp.twoHours = dataIndex.market_cap_cny;
+                    tableDataTempPrice.twoHours = dataIndex.price_cny;
                 } else if (index == 26) {
                     tableDataTemp.sixHours = dataIndex.market_cap_cny;
+                    tableDataTempPrice.sixHours = dataIndex.price_cny;
                 } else if (index == 288) {
                     tableDataTemp.oneDay = dataIndex.market_cap_cny;
+                    tableDataTempPrice.oneDay = dataIndex.price_cny;
                 }
             }, this.setState({
-                dataSource: [tableDataTemp]
+                dataSource: [tableDataTemp],
+                dataSourcePrice: [tableDataTempPrice]
             }))
         } else {
 
@@ -181,8 +181,12 @@ class BitCoinDataContent extends Component {
                     <p>资金量变化图表</p>
                     <Table dataSource={this.state.dataSource} columns={this.state.columns} />
                     <p>当前资金量价格变化</p>
-
-                    <p>预测</p>
+                    <Table dataSource={this.state.dataSourcePrice} columns={this.state.columns} />
+                </div>
+                <div className="BitCoinDataContent-todayCoin">
+                    <TodayCoin />
+                </div>
+                <div className="BitCoinDataContent-foot">
                     <p>当前版本为beta版，下一板块为价格变化和明星币种预测，请加下面群反映问题和建议</p>
                     <p>急需建议，这个产品得idea目前只有根据量级变化预测价格，但是我感觉依靠大数据可以分析出更多的东西。希望有好的建议提交给我，一起建设一个为散户服务的产品！</p>
                     <p className="wechat-piuture"><a href="https://t.zsxq.com/7YVZVzz">我正在「Gakki 带你去月球」和朋友们讨论有趣的话题，你⼀起来吧</a></p>
