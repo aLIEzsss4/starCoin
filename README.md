@@ -8,6 +8,9 @@
 * 跨域使用koa-cors
 * 后端请求使用superagent
 * 后端数据库使用mongoose
+* 增加mail插件，用来catch服务器错误
+
+##插件，增加数额转换插件
 
 ## 全局
 * 统一使用date-fn来做时间处理

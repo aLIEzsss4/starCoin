@@ -2,7 +2,10 @@
 获取数据返回到前端 
  */
 const mongoose = require('mongoose');
-const mongodbSchema = require('../mongdb')
+const mongodbSchema = require('../mongdb');
+const sendMail = require('../mail');
+
+
 let Schema = mongoose.Schema;
 mongoose.connect('mongodb://localhost/coinmarketData');
 //conmarketDataSchema
@@ -17,6 +20,7 @@ module.exports = function getDataFromCoinMartetDataBase(singleCoin) {
             console.log(singleCoin);
             console.log('>>>>>requestName')
             if (err) {
+                sendMail(err);
                 console.log(err + 'this is an err!')
             } else {
                 console.log(res)

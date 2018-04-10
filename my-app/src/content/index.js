@@ -1,7 +1,10 @@
+//react本体
 import * as React from "react"
 import { Component } from 'react';
+//插件
 import _ from 'lodash';
 import superagent from 'superagent';
+//样式
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { Table } from 'antd'
 import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
@@ -102,6 +105,7 @@ class BitCoinDataContent extends Component {
 
     }
     makeTable() {
+
         let tableData = [];
         let tableDataTemp = {
             name: '//',
@@ -122,26 +126,37 @@ class BitCoinDataContent extends Component {
                 if (index == 0) {
                     tableDataTemp.key = index;
                     tableDataTemp.name = dataIndex.name;
-                    tableDataTemp.fifmin = dataIndex.market_cap_cny;
-
+                    tableDataTemp.fifmin = (dataIndex.market_cap_usd >= 100000000) ?
+                        dataIndex.market_cap_usd.toString().substr(0, dataIndex.market_cap_usd.toString().length - 8).toLocaleString().replace(/,/g, '.') + '亿元' :
+                        dataIndex.market_cap_usd.toString().substr(0, dataIndex.market_cap_usd.toString().length - 4).toLocaleString().replace(/,/g, '.') + '万元';
                     tableDataTempPrice.key = index;
                     tableDataTempPrice.name = dataIndex.name;
-                    tableDataTempPrice.fifmin = dataIndex.price_cny;
+                    tableDataTempPrice.fifmin = dataIndex.price_usd;
                 } else if (index == 13) {
-                    tableDataTemp.twoHours = dataIndex.market_cap_cny;
-                    tableDataTempPrice.twoHours = dataIndex.price_cny;
+                    tableDataTemp.twoHours = (dataIndex.market_cap_usd >= 100000000) ?
+                        dataIndex.market_cap_usd.toString().substr(0, dataIndex.market_cap_usd.toString().length - 8).toLocaleString().replace(/,/g, '.') + '亿元' :
+                        dataIndex.market_cap_usd.toString().substr(0, dataIndex.market_cap_usd.toString().length - 4).toLocaleString().replace(/,/g, '.') + '万元';
+                    tableDataTempPrice.twoHours = dataIndex.price_usd;
                 } else if (index == 26) {
-                    tableDataTemp.sixHours = dataIndex.market_cap_cny;
-                    tableDataTempPrice.sixHours = dataIndex.price_cny;
+                    tableDataTemp.sixHours = (dataIndex.market_cap_usd >= 100000000) ?
+                        dataIndex.market_cap_usd.toString().substr(0, dataIndex.market_cap_usd.toString().length - 8).toLocaleString().replace(/,/g, '.') + '亿元' :
+                        dataIndex.market_cap_usd.toString().substr(0, dataIndex.market_cap_usd.toString().length - 4).toLocaleString().replace(/,/g, '.') + '万元';
+                    tableDataTempPrice.sixHours = dataIndex.price_usd;
                 } else if (index == 96) {
-                    tableDataTemp.oneDay = dataIndex.market_cap_cny;
-                    tableDataTempPrice.oneDay = dataIndex.price_cny;
+                    tableDataTemp.oneDay = (dataIndex.market_cap_usd >= 100000000) ?
+                        dataIndex.market_cap_usd.toString().substr(0, dataIndex.market_cap_usd.toString().length - 8).toLocaleString().replace(/,/g, '.') + '亿元' :
+                        dataIndex.market_cap_usd.toString().substr(0, dataIndex.market_cap_usd.toString().length - 4).toLocaleString().replace(/,/g, '.') + '万元';
+                    tableDataTempPrice.oneDay = dataIndex.price_usd;
                 } else if (index == 288) {
-                    tableDataTemp.threeDay = dataIndex.market_cap_cny;
-                    tableDataTempPrice.threeDay = dataIndex.price_cny;
+                    tableDataTemp.threeDay = (dataIndex.market_cap_usd >= 100000000) ?
+                        dataIndex.market_cap_usd.toString().substr(0, dataIndex.market_cap_usd.toString().length - 8).toLocaleString().replace(/,/g, '.') + '亿元' :
+                        dataIndex.market_cap_usd.toString().substr(0, dataIndex.market_cap_usd.toString().length - 4).toLocaleString().replace(/,/g, '.') + '万元';
+                    tableDataTempPrice.threeDay = dataIndex.price_usd;
                 } else if (index == 480) {
-                    tableDataTemp.fiveDay = dataIndex.market_cap_cny;
-                    tableDataTempPrice.fiveDay = dataIndex.price_cny;
+                    tableDataTemp.fiveDay = (dataIndex.market_cap_usd >= 100000000) ?
+                        dataIndex.market_cap_usd.toString().substr(0, dataIndex.market_cap_usd.toString().length - 8).toLocaleString().replace(/,/g, '.') + '亿元' :
+                        dataIndex.market_cap_usd.toString().substr(0, dataIndex.market_cap_usd.toString().length - 4).toLocaleString().replace(/,/g, '.') + '万元';
+                    tableDataTempPrice.fiveDay = dataIndex.price_usd;
                 }
             }, this.setState({
                 dataSource: [tableDataTemp],
@@ -208,9 +223,9 @@ class BitCoinDataContent extends Component {
                     <button className="BitCoinDataContent-searchBar-btn" onClick={this.searchCoin.bind(this)}>search</button>
                 </div>
                 <div className="BitCoinDataContent-searchBar-table">
-                    <p>资金量变化图表</p>
+                    <p>资金量变化图表(单位:美元)</p>
                     <Table dataSource={this.state.dataSource} columns={this.state.columns} />
-                    <p>当前资金量价格变化</p>
+                    <p>当前资金量价格变化(单位:美元)</p>
                     <Table dataSource={this.state.dataSourcePrice} columns={this.state.columns} />
                 </div>
                 <div className="BitCoinDataContent-todayCoin">

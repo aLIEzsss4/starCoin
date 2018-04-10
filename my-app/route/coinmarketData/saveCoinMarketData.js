@@ -5,6 +5,8 @@ const superagent = require('superagent');
 const getTime = require('date-fns/get_time');
 const mongoose = require('mongoose');
 const mongodbSchema = require('../mongdb')
+const sendMail = require('../mail');
+
 let Schema = mongoose.Schema;
 mongoose.connect('mongodb://localhost/coinmarketData');
 
@@ -19,6 +21,7 @@ class saveCoinmarketData {
     getCoinmarketData() {
         superagent.get('https://api.coinmarketcap.com/v1/ticker/?convert=CNY&limit=1000').end((err, res) => {
             if (err) {
+                sendMail(err)
                 console.log(err)
             } else {
                 let timeNow = getTime(new Date());
@@ -46,6 +49,7 @@ class saveCoinmarketData {
                     });
                     coinmarketDataModel.save((err) => {
                         if (err) {
+                            sendMail(err)
                             console.log(err)
                         }
                     })
@@ -57,4 +61,4 @@ class saveCoinmarketData {
 let saveCoinmarketDataStart = new saveCoinmarketData();
 setInterval(() => {
     saveCoinmarketDataStart.getCoinmarketData()
-}, 300000)
+}, 10000)
