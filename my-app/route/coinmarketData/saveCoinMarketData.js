@@ -61,4 +61,4 @@ class saveCoinmarketData {
 let saveCoinmarketDataStart = new saveCoinmarketData();
 setInterval(() => {
     saveCoinmarketDataStart.getCoinmarketData()
-}, 10000)
+}, 43200000)
