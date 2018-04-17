@@ -26,7 +26,7 @@ class TodayCoin extends Component {
         Animation.to(refNodeText, 0.3, {
             opacity: 1,
             color: '#fff',
-            background:'#3f51b5'
+            background: '#3f51b5'
         })
 
     }
@@ -36,9 +36,9 @@ class TodayCoin extends Component {
             <div className="BitCoinDataContent-todayCoin-content" onClick={this.tellMeTodayCoin.bind(this)} ref={c => refNode = c}>
                 <p className="BitCoinDataContent-todayCoin-content-coverText" ref={x => refNodeCoverText = x}>点我翻牌子</p>
                 <div className="BitCoinDataContent-todayCoin-content-text" ref={c => refNodeText = c}>
-                    <p >XEM </p>
+                    <p >DGD </p>
                     <p >参考binance </p>
-                    <p >buy：310聪 sell：351聪 </p></div>
+                    <p >buy：30000聪 sell：35000聪 </p></div>
             </div>
         )
     }
