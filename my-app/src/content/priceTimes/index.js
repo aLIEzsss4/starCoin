@@ -15,25 +15,6 @@ import { divProperties } from "@uifabric/utilities/lib";
 class PriceTimes extends Component {
     constructor(props) {
         super()
-        // "id": "bitcoin",
-        // "name": "Bitcoin",
-        // "symbol": "BTC",
-        // "rank": "1",
-        // "price_usd": "8097.63",
-        // "price_btc": "1.0",
-        // "24h_volume_usd": "10656600000.0",
-        // "market_cap_usd": "136369449831",
-        // "available_supply": "16840662.0",
-        // "total_supply": "16840662.0",
-        // "max_supply": "21000000.0",
-        // "percent_change_1h": "-1.51",
-        // "percent_change_24h": "-15.12",
-        // "percent_change_7d": "-25.74",
-        // "last_updated": "1517572469",
-        // "price_cny": "50885.50692",
-        // "24h_volume_cny": "66966074400.0",
-        // "market_cap_cny": "856945622738"
-
 
         this.state = {
             temCoinBefore: [],
@@ -75,6 +56,7 @@ class PriceTimes extends Component {
     componentDidMount() {
     }
     componentWillReceiveProps(nextProps) {
+        this.clearData()
         if (nextProps.name.temCoinBefore.length != 0) {
             this.setState({
                 dataSource: [
@@ -83,11 +65,11 @@ class PriceTimes extends Component {
                         rank: nextProps.name.temCoinBefore.rank,
                         price_usd: nextProps.name.temCoinBefore.price_usd,
                         price_btc: nextProps.name.temCoinBefore.price_btc,
-                        market_cap_usd: (nextProps.name.temCoinBefore.name = 'Bitcoin') ?
-                            nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 8).toLocaleString().replace(/,/g, '.') + '亿元' :
-                            (Number(nextProps.name.temCoinBefore.market_cap_usd >= 100000000)) ?
-                                nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 10).toLocaleString().replace(/,/g, '.') + '亿元' :
-                                nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 6).toLocaleString().replace(/,/g, '.') + '万元',
+                        market_cap_usd: (nextProps.name.temCoinBefore.name === 'Bitcoin') ?
+                            nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 8).toLocaleString().replace(/,/g, '.') + '亿美元' :
+                            (Number(nextProps.name.temCoinBefore.market_cap_usd) >= 100000000) ?
+                                nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 10).toLocaleString().replace(/,/g, '.') + '亿美元' :
+                                nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 7).toLocaleString().replace(/,/g, '.') + '万美元',
                         // market_cap_usd: nextProps.name.temCoinBefore.market_cap_usd,
                         time: '2018-02-06'
                     },
@@ -97,21 +79,28 @@ class PriceTimes extends Component {
                         price_usd: nextProps.name.temCoinNow.price_usd,
                         price_btc: nextProps.name.temCoinNow.price_btc,
                         market_cap_usd:
-                            (nextProps.name.temCoinBefore.name = 'Bitcoin') ?
-                                nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 8).toLocaleString().replace(/,/g, '.') + '亿元' :
-                                (Number(nextProps.name.temCoinNow.market_cap_usd >= 100000000)) ?
-                                    nextProps.name.temCoinNow.market_cap_usd.toString().substr(0, nextProps.name.temCoinNow.market_cap_usd.toString().length - 10).toLocaleString().replace(/,/g, '.') + '亿元' :
-                                    nextProps.name.temCoinNow.market_cap_usd.toString().substr(0, nextProps.name.temCoinNow.market_cap_usd.toString().length - 6).toLocaleString().replace(/,/g, '.') + '万元',
-                        market_cap_usdf: Number(nextProps.name.temCoinNow.price_usd) / new Number(nextProps.name.temCoinNow.price_usd),
+                            (nextProps.name.temCoinNow.name === 'Bitcoin') ?
+                                nextProps.name.temCoinNow.market_cap_usd.substr(0, nextProps.name.temCoinNow.market_cap_usd.toString().length - 8).toLocaleString().replace(/,/g, '.') + '亿美元' :
+                                (Number(nextProps.name.temCoinNow.market_cap_usd) >= 100000000) ?
+                                    Number(nextProps.name.temCoinNow.market_cap_usd).toLocaleString().substr(0, nextProps.name.temCoinNow.market_cap_usd.length - 10) + '亿美元' :
+                                    Number(nextProps.name.temCoinNow.market_cap_usd).toLocaleString().substr(0, nextProps.name.temCoinNow.market_cap_usd.length - 10) + '万美元',
+                        market_cap_usdf: Number(nextProps.name.temCoinNow.market_cap_usd).toLocaleString().substr(0, nextProps.name.temCoinNow.market_cap_usd.length - 10),
                         times: Number(nextProps.name.temCoinNow.price_usd) / new Number(nextProps.name.temCoinBefore.price_usd).toString(),
                         time: dateTool.format(new Date(), 'YYYY-MM-DD-HH')
                     }
                 ],
 
             }, () => {
+                console.log(this.state);
+                console.log('state')
 
             })
         }
+    }
+    clearData() {
+        this.setState({
+
+        })
     }
 
     render() {

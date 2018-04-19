@@ -39,11 +39,16 @@ class BitCoinDataContent extends Component {
         }).then(data => {
             dataBefore = _.find(snapshot, { 'symbol': this.state.typingCoin.toUpperCase() })
             dataNow = _.find(data, { 'symbol': this.state.typingCoin.toUpperCase() })
-            this.setState({
-                allCoins: data,
-                temCoinBefore: dataBefore,
-                temCoinNow: dataNow
-            })
+            console.log(dataBefore)
+            if(dataBefore != undefined){
+                this.setState({
+                    allCoins: data,
+                    temCoinBefore: dataBefore,
+                    temCoinNow: dataNow
+                })
+            }else{
+                alert('no')
+            }
         }).catch(error => console.log(error))
     }
     //输入框内容
