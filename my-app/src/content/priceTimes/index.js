@@ -66,10 +66,10 @@ class PriceTimes extends Component {
                         price_usd: nextProps.name.temCoinBefore.price_usd,
                         price_btc: nextProps.name.temCoinBefore.price_btc,
                         market_cap_usd: (nextProps.name.temCoinBefore.name === 'Bitcoin') ?
-                            nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 8).toLocaleString().replace(/,/g, '.') + '亿美元' :
+                            nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 8).toString().replace(/,/g, '.') + '亿美元' :
                             (Number(nextProps.name.temCoinBefore.market_cap_usd) >= 100000000) ?
-                                nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 10).toLocaleString().replace(/,/g, '.') + '亿美元' :
-                                nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 7).toLocaleString().replace(/,/g, '.') + '万美元',
+                                nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 10).toString().replace(/,/g, '.') + '亿美元' :
+                                nextProps.name.temCoinBefore.market_cap_usd.substr(0, nextProps.name.temCoinBefore.market_cap_usd.toString().length - 7).toString().replace(/,/g, '.') + '万美元',
                         // market_cap_usd: nextProps.name.temCoinBefore.market_cap_usd,
                         time: '2018-02-06'
                     },
@@ -80,11 +80,11 @@ class PriceTimes extends Component {
                         price_btc: nextProps.name.temCoinNow.price_btc,
                         market_cap_usd:
                             (nextProps.name.temCoinNow.name === 'Bitcoin') ?
-                                nextProps.name.temCoinNow.market_cap_usd.substr(0, nextProps.name.temCoinNow.market_cap_usd.toString().length - 8).toLocaleString().replace(/,/g, '.') + '亿美元' :
+                                nextProps.name.temCoinNow.market_cap_usd.substr(0, nextProps.name.temCoinNow.market_cap_usd.toString().length - 8).toString().replace(/,/g, '.') + '亿美元' :
                                 (Number(nextProps.name.temCoinNow.market_cap_usd) >= 100000000) ?
-                                    Number(nextProps.name.temCoinNow.market_cap_usd).toLocaleString().substr(0, nextProps.name.temCoinNow.market_cap_usd.length - 10) + '亿美元' :
-                                    Number(nextProps.name.temCoinNow.market_cap_usd).toLocaleString().substr(0, nextProps.name.temCoinNow.market_cap_usd.length - 10) + '万美元',
-                        market_cap_usdf: Number(nextProps.name.temCoinNow.market_cap_usd).toLocaleString().substr(0, nextProps.name.temCoinNow.market_cap_usd.length - 10),
+                                    Number(nextProps.name.temCoinNow.market_cap_usd).toString().substr(0, nextProps.name.temCoinNow.market_cap_usd.length - 10) + '亿美元' :
+                                    Number(nextProps.name.temCoinNow.market_cap_usd).toString().substr(0, nextProps.name.temCoinNow.market_cap_usd.length - 10) + '万美元',
+                        market_cap_usdf: Number(nextProps.name.temCoinNow.market_cap_usd).toString().substr(0, nextProps.name.temCoinNow.market_cap_usd.length - 10),
                         times: Number(nextProps.name.temCoinNow.price_usd) / new Number(nextProps.name.temCoinBefore.price_usd).toString(),
                         time: dateTool.format(new Date(), 'YYYY-MM-DD-HH')
                     }
