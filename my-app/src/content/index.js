@@ -40,14 +40,14 @@ class BitCoinDataContent extends Component {
             dataBefore = _.find(snapshot, { 'symbol': this.state.typingCoin.toUpperCase() })
             dataNow = _.find(data, { 'symbol': this.state.typingCoin.toUpperCase() })
             console.log(dataBefore)
-            if(dataBefore != undefined){
+            if (dataBefore != undefined) {
                 this.setState({
                     allCoins: data,
                     temCoinBefore: dataBefore,
                     temCoinNow: dataNow
                 })
-            }else{
-                alert('no')
+            } else {
+                alert(`${this.state.typingCoin} now exist`)
             }
         }).catch(error => console.log(error))
     }
