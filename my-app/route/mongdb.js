@@ -19,5 +19,10 @@ module.exports = {
         "price_cny": Number,
         "24h_volume_cny": Number,
         "market_cap_cny": Number
+    },
+    userMailSchema:{
+        mail:String,
+        coins:Array,
+        finance:Object
     }
 }

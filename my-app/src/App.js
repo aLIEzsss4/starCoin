@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
 
 // Component
@@ -9,6 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="App-background"></div>
         <header className="App-header">
           BitCoinData
         </header>

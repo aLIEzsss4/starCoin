@@ -1,5 +1,7 @@
 const Koa = require('koa');
 const app = new Koa();
+//func
+const saveUserData = require('./coinmarketData/saveUserMailData')
 const getCoinmarketData = require('./coinmarketData/getCoinMarketData')
 //router
 const router = require('koa-router')();
@@ -8,6 +10,11 @@ const koaBody = require('koa-body');
 const cors = require('koa2-cors')
 app.use(cors());
 
+router.post('/saveUserData', koaBody(), (ctx) => {
+    ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+    saveUserData(ctx.request.body.mail, ctx.request.body.userCoins, ctx.request.body.finance);
+    ctx.body = { state: 'success' }
+})
 router.post('/coinMarketData', koaBody(), async (ctx) => {
     console.log(ctx.request.body);
     console.log('>>>>>>>>>>>>')
@@ -17,6 +24,7 @@ router.post('/coinMarketData', koaBody(), async (ctx) => {
     ctx.body = result
 })
 
+
 app.use(router.routes());
 
-app.listen(3001);
+app.listen(3001, () => console.log('Koa start at 3001...'));

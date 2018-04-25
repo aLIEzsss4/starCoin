@@ -1,16 +1,19 @@
 //react本体
 import * as React from "react"
 import { Component } from 'react';
+import Animate from 'rc'
 //插件
 import snapshot from '../snapshot/snapShot20180206'
 import _ from 'lodash';
 import superagent from 'superagent';
 //样式
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
-import { Table } from 'antd'
+import { Table,message } from 'antd'
 import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
 import './index.css'
 
+//组件
+import FinanceCal from './financeCal/index'
 import PriceTimes from './priceTimes/index'
 import TodayCoin from './todayCoin/index'
 
@@ -39,7 +42,6 @@ class BitCoinDataContent extends Component {
         }).then(data => {
             dataBefore = _.find(snapshot, { 'symbol': this.state.typingCoin.toUpperCase() })
             dataNow = _.find(data, { 'symbol': this.state.typingCoin.toUpperCase() })
-            console.log(dataBefore)
             if (dataBefore != undefined) {
                 this.setState({
                     allCoins: data,
@@ -47,7 +49,7 @@ class BitCoinDataContent extends Component {
                     temCoinNow: dataNow
                 })
             } else {
-                alert(`${this.state.typingCoin} now exist`)
+                message.info(this.state.typingCoin+' not exist!')
             }
         }).catch(error => console.log(error))
     }
@@ -73,6 +75,9 @@ class BitCoinDataContent extends Component {
                 </div>
                 <div className="BitCoinDataContent-searchBar-table">
                     <PriceTimes name={this.state} />
+                </div>
+                <div className="BitCoinDataContent-financeCal">
+                <FinanceCal/>
                 </div>
                 <div className="BitCoinDataContent-todayCoin">
                     <p>今日明星币种(盈亏自负)</p>
