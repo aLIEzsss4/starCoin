@@ -7,7 +7,7 @@ module.exports = function sendMail(content) {
         port: 587,
         auth: {
             user: 'bitcointradebykara@outlook.com',
-            pass: '123456zxc'
+            pass: 'bitcointrade123'
         }
     })
 
