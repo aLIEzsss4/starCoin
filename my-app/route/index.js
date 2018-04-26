@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const app = new Koa();
 //func
+const sendMail = require('./mail/mail')
 const saveUserData = require('./coinmarketData/saveUserMailData')
 const getCoinmarketData = require('./coinmarketData/getCoinMarketData')
 //router
@@ -11,10 +12,13 @@ const cors = require('koa2-cors')
 app.use(cors());
 
 router.post('/saveUserData', koaBody(), (ctx) => {
-    ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000');
-    saveUserData(ctx.request.body.mail, ctx.request.body.userCoins, ctx.request.body.finance);
+    // ctx.set('Access-Control-Allow-Origin', 'http://www.starcoin.site/3001');
+    ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000/');
+    saveUserData(ctx.request.body.mail, ctx.request.body.coins, ctx.request.body.finance);
+    sendMail('恭喜您成功注册了starcoin资金收益服务', ctx.request.body.mail, ctx.request.body.coins, ctx.request.body.finance)
     ctx.body = { state: 'success' }
 })
+
 router.post('/coinMarketData', koaBody(), async (ctx) => {
     console.log(ctx.request.body);
     console.log('>>>>>>>>>>>>')

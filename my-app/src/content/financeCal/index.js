@@ -3,6 +3,7 @@ import * as React from "react"
 import { Component } from 'react';
 //style
 import { Input, Tabs } from 'antd'
+import { Table,message } from 'antd'
 import { divProperties } from "@uifabric/utilities/lib";
 import './index.css'
 
@@ -23,7 +24,8 @@ class FinanceCal extends Component {
         }
     }
     saveUserData() {
-        fetch('http://localhost:3001/saveUserData', {
+        // fetch('http://www.starcoin.site:3001/saveUserData', {
+            fetch('http://localhost:3001/saveUserData', {
             method: 'POST', headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -31,6 +33,7 @@ class FinanceCal extends Component {
             body:JSON.stringify(this.state)
         }).then(response => {
             if (response.ok) {
+                message.info('save success')
                 return response.json()
             } else {
                 return Promise.reject('something went wrong')
