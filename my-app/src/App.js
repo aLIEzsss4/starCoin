@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
 
-// Component
-import BitCoinDataContent from './content/index'
+//componment
+import DaysContent from './content/daysContent/index'
+
 
 class App extends Component {
+
+  componentDidMount() {
+  }
   render() {
     return (
       <div className="App">
@@ -13,7 +17,9 @@ class App extends Component {
         <header className="App-header">
           BitCoinData
         </header>
-          <BitCoinDataContent/>
+        <div className="Content">
+          <DaysContent/>
+        </div>
       </div>
     );
   }
