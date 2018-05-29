@@ -5,11 +5,10 @@ import './index.css';
 
 //method
 import _ from 'lodash';
-import MailTool from '../../tool/mail';
-
 
 
 //styles
+import { message } from 'antd';
 import Button from '@material-ui/core/Button';
 import { Divider } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -20,8 +19,6 @@ import Typography from '@material-ui/core/Typography';
 
 import { Input } from 'antd';
 const Search = Input.Search;
-
-const mailTool = new MailTool();
 
 
 class DaysContent extends Component {
@@ -58,14 +55,20 @@ class DaysContent extends Component {
                         return this.state.inputValue.toUpperCase() == index.symbol
                     })
                 }, () => {
-                    fetch(`https://api.coinmarketcap.com/v2/ticker/${this.state.calCoin.id}/`).then((res) => {
-                        res.json().then(singleCoin => {
-                            console.log(singleCoin)
-                            this.setState({
-                                temCoin: singleCoin
+                    if (this.state.calCoin != null) {
+                        fetch(`https://api.coinmarketcap.com/v2/ticker/${this.state.calCoin.id}||1/`).then((res) => {
+                            res.json().then(singleCoin => {
+                                console.log(singleCoin)
+                                this.setState({
+                                    temCoin: singleCoin
+                                })
                             })
+                        }).catch(err => {
+                            console.log('Oops something went wrong' + err)
                         })
-                    })
+                    } else {
+                        message.info('This coin you find not exist !', 5)
+                    }
                 })
             })
         }).catch(err => {
