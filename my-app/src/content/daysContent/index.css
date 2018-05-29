@@ -1,0 +1,33 @@
+.DaysContent{
+
+}
+.DaysContent header{
+    width: 70%;
+    margin: 0 auto;
+    color: #000;
+    background-color: #a4c7c7;
+    font-size: 10px; 
+}
+.DaysContent header .MuiTab-label-55{
+    font-size: 15px;
+
+}
+.DaysContent .DaysContent-content-hidden .ant-input-search{
+    display: block;
+    margin-top: 20px;
+}
+.DaysContent .DaysContent-content-hidden span input{
+    width: 258px;
+    height: 35px;
+    display: block;
+    margin: 50px auto 19px auto;
+    border-radius: 4px;
+    border: 1px solid #9ac0c0;
+}
+.DaysContent .DaysContent-content-hidden span button{
+    width: 58px;
+    height: 30px;
+    background: #93c5c7;
+    border-radius: 4px;
+    border: 0;
+}
