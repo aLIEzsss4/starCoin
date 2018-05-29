@@ -25,8 +25,9 @@ class DaysContent extends Component {
         this.onInputSubmit = this.onInputSubmit.bind(this)
         this.state = {
             tabItem: Number,
-            inputValue: String,
-            calCoin: Object
+            inputValue: null || 'BTC',
+            calCoin: Object,
+            temCoin: Object
         }
 
     }
@@ -51,10 +52,13 @@ class DaysContent extends Component {
                     calCoin: _.find(data.data, (index) => {
                         return this.state.inputValue.toUpperCase() == index.symbol
                     })
-                },()=>{
-                    fetch(`https://api.coinmarketcap.com/v2/ticker/${this.state.calCoin.id}/`).then((res)=>{
-                        res.json().then(singleCoin=>{
+                }, () => {
+                    fetch(`https://api.coinmarketcap.com/v2/ticker/${this.state.calCoin.id}/`).then((res) => {
+                        res.json().then(singleCoin => {
                             console.log(singleCoin)
+                            this.setState({
+                                temCoin: singleCoin
+                            })
                         })
                     })
                 })
@@ -77,10 +81,18 @@ class DaysContent extends Component {
                 <div className={this.state.tabItem === 0 ? 'DaysContent-content' : 'DaysContent-content-hidden'}>
                     <Search type="Search" className="DaysContent-content-search" onChange={this.onInputChange.bind(this)} placeholder="input search text"
                         onSearch={this.onInputSubmit}
-                        enterButton >
-
-
+                        enterButton="Search"
+                        size="large"
+                    >
                     </Search>
+                    <div>
+                        <p>当前总量{this.state.temCoin.data != undefined ? this.state.temCoin.data.max_supply : 'something went wrong'}</p>
+                        <p>当前流通量{this.state.temCoin.data != undefined ? this.state.temCoin.data.circulating_supply : 'something went wrong'}</p>
+                        <p>当前市值{this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.market_cap : 'something went wrong'}</p>
+                        <p>24小时流通量{this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.volume_24h / this.state.temCoin.data.quotes.USD.price : 'something went wrong'}</p>
+                        <p>24小时流通量占流通量百分比{this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.volume_24h / this.state.temCoin.data.quotes.USD.price / this.state.temCoin.data.circulating_supply : 'something went wrong'}</p>
+                        <p>24小时价格涨跌{this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.percent_change_24h : 'something went wrong'}</p>
+                    </div>
 
 
 
