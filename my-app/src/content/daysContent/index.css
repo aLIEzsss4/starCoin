@@ -1,5 +1,6 @@
 .DaysContent{
 
+
 }
 .DaysContent header{
     width: 70%;
@@ -12,11 +13,15 @@
     font-size: 15px;
 
 }
-.DaysContent .DaysContent-content-hidden .ant-input-search{
+.DaysContent-content{
+    width:70%;
+    margin: 0 auto;
+}
+.DaysContent .DaysContent-content .ant-input-search{
     display: block;
     margin-top: 20px;
 }
-.DaysContent .DaysContent-content-hidden span input{
+.DaysContent .DaysContent-content span input{
     width: 258px;
     height: 35px;
     display: block;
@@ -24,10 +29,22 @@
     border-radius: 4px;
     border: 1px solid #9ac0c0;
 }
-.DaysContent .DaysContent-content-hidden span button{
+.DaysContent .DaysContent-content span button{
     width: 58px;
     height: 30px;
     background: #93c5c7;
     border-radius: 4px;
     border: 0;
+}
+.DaysContent-content-search ,.DaysContent-content-list{
+
+}
+.DaysContent-content-search {
+    float: left;
+}
+.DaysContent-content-list{
+    overflow: hidden;
+    margin-top: 4%;
+    /* left: 10px; */
+    margin-right: 21%;
 }

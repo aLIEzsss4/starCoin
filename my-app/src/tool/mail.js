@@ -36,4 +36,4 @@ class MailTool {
     }
 
 }
-export default MailTool;
+module.exports  =  MailTool;
