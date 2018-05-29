@@ -1,10 +1,12 @@
-import * as React from "react"
+import * as React from "react";
 import { Component } from 'react';
-import ReactDom from 'react-dom'
-import './index.css'
+import ReactDom from 'react-dom';
+import './index.css';
 
 //method
-import _ from 'lodash'
+import _ from 'lodash';
+import MailTool from '../../tool/mail';
+
 
 
 //styles
@@ -18,6 +20,8 @@ import Typography from '@material-ui/core/Typography';
 
 import { Input } from 'antd';
 const Search = Input.Search;
+
+const mailTool = new MailTool();
 
 
 class DaysContent extends Component {
@@ -87,16 +91,13 @@ class DaysContent extends Component {
                     >
                     </Search>
                     <div>
-                        <p>当前总量 :{this.state.temCoin.data != undefined ? this.state.temCoin.data.max_supply : ' /'}</p>
-                        <p>当前流通量 :{this.state.temCoin.data != undefined ? this.state.temCoin.data.circulating_supply : '/'}</p>
-                        <p>当前市值 :{this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.market_cap : '/'}</p>
-                        <p>24小时流通量 :{this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.volume_24h / this.state.temCoin.data.quotes.USD.price : '/'}</p>
-                        <p>24小时流通量占流通量百分比 :{this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.volume_24h / this.state.temCoin.data.quotes.USD.price / this.state.temCoin.data.circulating_supply : '/'}</p>
-                        <p>24小时价格涨跌 :{this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.percent_change_24h : '/'}</p>
+                        <p>当前总量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.max_supply : ' /'}</p>
+                        <p>当前流通量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.circulating_supply : '/'}</p>
+                        <p>当前市值 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.market_cap : '/'}</p>
+                        <p>24小时流通量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.volume_24h / this.state.temCoin.data.quotes.USD.price : '/'}</p>
+                        <p>24小时流通量占流通量百分比 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.volume_24h / this.state.temCoin.data.quotes.USD.price / this.state.temCoin.data.circulating_supply : '/'}</p>
+                        <p>24小时价格涨跌 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.percent_change_24h : '/'}</p>
                     </div>
-
-
-
                 </div>
 
             </div>
