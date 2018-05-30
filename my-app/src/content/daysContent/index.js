@@ -92,7 +92,7 @@ class DaysContent extends Component {
     sendMail() {
         console.log(this.state.temCoin)
         if (this.state.mail.toString().includes('@') && this.state.temCoin && this.state.temCoin.data != undefined) {
-            fetch('http://localhost:3001/sendMail', {
+            fetch('http://149.28.51.186:3001/sendMail', {
                 method: 'POST', // or 'PUT'
                 body: JSON.stringify({ 'mail': this.state.mail, 'data': this.state.temCoin }), // data can be `string` or {object}!
                 mode: 'cors',

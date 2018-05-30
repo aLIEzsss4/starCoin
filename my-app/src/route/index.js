@@ -15,8 +15,8 @@ app.use(cors());
 router.post('/sendMail', koaBody(), async (ctx) => {
     console.log(ctx.request.body);
     console.log('>>>>>>>>>>>>')
-    ctx.set('Access-Control-Allow-Origin', 'http://23.105.217.209', 'http://localhost:3000');
-    mailTool.sendMail('951517835@qq.com',ctx.request.body)
+    ctx.set('Access-Control-Allow-Origin', 'http://149.28.51.186', 'http://localhost:3000');
+    mailTool.sendMail(ctx.request.body.mail,ctx.request.body)
     ctx.body  = 'ok'
 
 })
