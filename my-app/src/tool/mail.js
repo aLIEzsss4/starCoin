@@ -15,8 +15,8 @@ class MailTool {
         })
     }
     sendMail(email, data) {
-        console.log(data.data);
-        console.log('maildata>>>>>')
+        console.log(email);
+        console.log('mail>>>>>')
         let opt = {
             from: 'bitcointradebykara@outlook.com',
             to: email,
