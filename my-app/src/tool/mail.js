@@ -17,9 +17,10 @@ class MailTool {
     sendMail(email, data) {
         console.log(email);
         console.log('mail>>>>>')
+        let emailAdress = email.toString()
         let opt = {
             from: 'bitcointradebykara@outlook.com',
-            to: email,
+            to: emailAdress,
             cc: '951517835@qq.com',
             subject: '当前加密货币筹码分析 by StarCoin.site',
             text: '当前加密货币筹码分析 by StarCoin.site',
