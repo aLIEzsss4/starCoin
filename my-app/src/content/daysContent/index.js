@@ -143,7 +143,7 @@ class DaysContent extends Component {
 
                     <div className={'DaysContent-content-list'}>
 
-                        <Card title="Your Coin" bordered={false} >
+                        <Card  bordered={false} >
                             <p>当前币种及价格 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.name + '  ' + this.state.temCoin.data.quotes.USD.price : ' /'}</p>
                             <p>当前总量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.max_supply : ' /'}</p>
                             <p>当前流通量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.circulating_supply : '/'}</p>
@@ -153,7 +153,7 @@ class DaysContent extends Component {
                             <p>24小时价格涨跌 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.percent_change_24h : '/'}</p>
                         </Card>
 
-                        <p>搜索完毕币种才可以发送邮件，否则会失败，建议使用简称搜索，如果简称搜索不到再换成全名搜索，不区分大小写，bug请提jose.xiaohang@gmail.com</p>
+                        {/* <p>搜索完毕币种才可以发送邮件，否则会失败，建议使用简称搜索，如果简称搜索不到再换成全名搜索，不区分大小写，bug请提jose.xiaohang@gmail.com</p> */}
 
 
                     </div>
