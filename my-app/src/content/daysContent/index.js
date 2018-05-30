@@ -26,11 +26,13 @@ class DaysContent extends Component {
     constructor() {
         super()
         this.onInputSubmit = this.onInputSubmit.bind(this)
+        this.sendMail = this.sendMail.bind(this)
         this.state = {
             tabItem: Number || 0,
             inputValue: null || 'BTC',
             calCoin: Object,
-            temCoin: Object
+            temCoin: Object,
+            mail: 'String'
         }
 
     }
@@ -42,10 +44,17 @@ class DaysContent extends Component {
     }
 
     onInputChange = (event) => {
-        console.log(event.target.value);
-        this.setState({
-            inputValue: event.target.value
-        })
+        console.log(event.target.id)
+        if (event.target.id == 'DaysContent-content-searchButton') {
+            // console.log(event.target.value);
+            this.setState({
+                inputValue: event.target.value
+            })
+        } else {
+            this.setState({
+                mail: event.target.value
+            })
+        }
     }
     onInputSubmit() {
 
@@ -53,13 +62,17 @@ class DaysContent extends Component {
             res.json().then(data => {
                 this.setState({
                     calCoin: _.find(data.data, (index) => {
-                        return this.state.inputValue.toUpperCase() == index.symbol
+                        if (this.state.inputValue.toUpperCase() == index.website_slug.toUpperCase()) {
+                            return this.state.inputValue.toUpperCase() == index.website_slug.toUpperCase()
+                        } else {
+                            return this.state.inputValue.toUpperCase() == index.symbol;
+                        }
                     })
                 }, () => {
+                    console.log(this.state)
                     if (this.state.calCoin != null) {
                         fetch(`https://api.coinmarketcap.com/v2/ticker/${this.state.calCoin.id}||1/`).then((res) => {
                             res.json().then(singleCoin => {
-                                console.log(singleCoin)
                                 this.setState({
                                     temCoin: singleCoin
                                 })
@@ -68,13 +81,37 @@ class DaysContent extends Component {
                             console.log('Oops something went wrong' + err)
                         })
                     } else {
-                        message.info('This coin you find not exist !', 5)
+                        message.info('你的币没找到，请使用全名试试 !', 5)
                     }
                 })
             })
         }).catch(err => {
-            console.log('Something went wrong ' + err)
+            console.log('出错了 ' + err)
         })
+    }
+    sendMail() {
+        console.log(this.state.temCoin)
+        if (this.state.mail.toString().includes('@') && this.state.temCoin && this.state.temCoin.data != undefined) {
+            fetch('http://localhost:3001/sendMail', {
+                method: 'POST', // or 'PUT'
+                body: JSON.stringify({ 'mail': this.state.mail, 'data': this.state.temCoin }), // data can be `string` or {object}!
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => {
+                console.log(res)
+                // res.json().then(index=>{
+                //     console.log(index)
+                // })
+            }).catch(err => {
+                console.log('Something went wrong  ' + err)
+            })
+        } else {
+            message.info('请输入正确的邮箱且币种搜索完毕', 5)
+        }
+
     }
 
     render() {
@@ -89,14 +126,14 @@ class DaysContent extends Component {
                 </AppBar>
                 <div className={'DaysContent-content'}>
                     <div className="DaysContent-content-search">
-                        <Search type="Search" className="DaysContent-content-searchButton" onChange={this.onInputChange.bind(this)} placeholder="input search text"
+                        <Search type="Search" className="DaysContent-content-searchButton" id="DaysContent-content-searchButton" onChange={this.onInputChange.bind(this)} placeholder="input search text"
                             onSearch={this.onInputSubmit}
                             enterButton="Search"
                             size="large"
                         >
                         </Search>
-                        <Search type="Search" className="DaysContent-content-searchMail" onChange={this.onInputChange.bind(this)} placeholder="输入邮箱将该数据发到你的邮箱（可选）"
-                            onSearch={this.onInputSubmit}
+                        <Search type="Search" className="DaysContent-content-searchMail" id="DaysContent-content-searchMail" onChange={this.onInputChange.bind(this)} placeholder="输入邮箱将该数据发到你的邮箱（可选）"
+                            onSearch={this.sendMail}
                             enterButton="发送"
                             size="large"
                         >
@@ -107,15 +144,18 @@ class DaysContent extends Component {
                     <div className={'DaysContent-content-list'}>
 
                         <Card title="Your Coin" bordered={false} >
-                        <p>当前币种及价格 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.name + '  ' + this.state.temCoin.data.quotes.USD.price : ' /'}</p>
-                        <p>当前总量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.max_supply : ' /'}</p>
-                        <p>当前流通量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.circulating_supply : '/'}</p>
-                        <p>当前市值 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.market_cap : '/'}</p>
-                        <p>24小时流通量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.volume_24h / this.state.temCoin.data.quotes.USD.price : '/'}</p>
-                        <p>24小时流通量占流通量百分比 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.volume_24h / this.state.temCoin.data.quotes.USD.price / this.state.temCoin.data.circulating_supply : '/'}</p>
-                        <p>24小时价格涨跌 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.percent_change_24h : '/'}</p>
+                            <p>当前币种及价格 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.name + '  ' + this.state.temCoin.data.quotes.USD.price : ' /'}</p>
+                            <p>当前总量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.max_supply : ' /'}</p>
+                            <p>当前流通量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.circulating_supply : '/'}</p>
+                            <p>当前市值 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.market_cap : '/'}</p>
+                            <p>24小时流通量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.volume_24h / this.state.temCoin.data.quotes.USD.price : '/'}</p>
+                            <p>24小时流通量占流通量百分比 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.volume_24h / this.state.temCoin.data.quotes.USD.price / this.state.temCoin.data.circulating_supply : '/'}</p>
+                            <p>24小时价格涨跌 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.percent_change_24h : '/'}</p>
                         </Card>
-                      
+
+                        <p>搜索完毕币种才可以发送邮件，否则会失败，建议使用简称搜索，如果简称搜索不到再换成全名搜索，不区分大小写，bug请提jose.xiaohang@gmail.com</p>
+
+
                     </div>
 
                 </div>

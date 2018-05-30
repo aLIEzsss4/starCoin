@@ -8,7 +8,7 @@
     background-image: url(./cool-background.png);
     background-repeat: no-repeat;
     background-size: cover;
-    filter: blur(15px);
+    filter: blur(6px);
     z-index: -1;
 }
 

@@ -10,19 +10,26 @@ class MailTool {
             port: 587,
             auth: {
                 user: 'bitcointradebykara@outlook.com',
-                pass: '123456zxc'
+                pass: '1234567890zxc'
             }
         })
     }
     sendMail(email, data) {
-
+        console.log(data.data);
+        console.log('maildata>>>>>')
         let opt = {
             from: 'bitcointradebykara@outlook.com',
             to: email,
             cc: '951517835@qq.com',
             subject: '当前加密货币筹码分析 by StarCoin.site',
             text: '当前加密货币筹码分析 by StarCoin.site',
-            html: '<h1>' + '当前加密货币总价值为: ' + this.allCoinPrice + 'CNY' + '<br>' + '当前加密总盈利为: ' + this.allCoinEarn + 'CNY' + '<br>' + '持仓LTC总值为（成本18000，总量为8.09个）:' + '<br>' + + this.ltcPrice + 'CNY' + '<br>' + '  持仓LTC盈利为' + this.ltcEarn + 'CNY' + '<br>' + '持仓EOS总值为（成本11200，总量为202.49个）' + '<br>' + this.eosPrice + 'CNY' + '<br>' + '  持仓EOS盈利为: ' + this.eosEarn + 'CNY' + '<br>' + '当前持仓XVG总值为（成本5600，总量为5041个）: ' + this.xvgPrice + 'CNY' + '<br>' + '  当前xvg盈利为' + this.xvgEarn + 'CNY' + '<br>' + '<h1>' + '<br>' + '<h2>' + 'CoinColaLTC盈利（场外价格更高，所以在这里算一下）' + this.ltcEarnFromCoinCola.toString().replace(/,/g, "<br/>") + '<br>' + 'CoinColaLTC总价（场外价格更高，所以在这里算一下）' + this.ltcPriceFromCoinCola.toString().replace(/,/g, "<br/>") + '<h2>'
+            html: '<p>' + '币种和价格： ' + data.data.data.name + '  ' + data.data.data.quotes.USD.price + '<p>' +
+                '<p>' + '当前总量： ' + data.data.data.max_supply + '<p>' +
+                '<p>' + '当前流通量： ' + data.data.data.circulating_supply + '<p>' +
+                '<p>' + '当前市值： ' + data.data.data.quotes.USD.market_cap + '<p>' +
+                '<p>' + '24小时流通量： ' + data.data.data.quotes.USD.volume_24h + '<p>' +
+                '<p>' + '24小时流通量占流通量百分比： ' + data.data.data.quotes.USD.volume_24h / data.data.data.quotes.USD.price / data.data.data.circulating_supply + '<p>' +
+                '<p>' + '24小时价格涨跌： ' + data.data.data.quotes.USD.percent_change_24h + '<p>'
         }
         this.mailSend.sendMail(opt, (err, msg) => {
             if (err) {
@@ -36,4 +43,4 @@ class MailTool {
     }
 
 }
-module.exports  =  MailTool;
+module.exports = MailTool;
