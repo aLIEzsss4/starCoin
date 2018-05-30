@@ -8,6 +8,7 @@ import _ from 'lodash';
 
 
 //styles
+import { Card } from 'antd';
 import { message } from 'antd';
 import Button from '@material-ui/core/Button';
 import { Divider } from '@material-ui/core';
@@ -87,23 +88,25 @@ class DaysContent extends Component {
                     </Tabs>
                 </AppBar>
                 <div className={'DaysContent-content'}>
-                <div className="DaysContent-content-search">
-                <Search type="Search" className="DaysContent-content-searchButton"  onChange={this.onInputChange.bind(this)} placeholder="input search text"
-                        onSearch={this.onInputSubmit}
-                        enterButton="Search"
-                        size="large"
-                    >
-                    </Search>
-                    <Search type="Search"  className="DaysContent-content-searchMail" onChange={this.onInputChange.bind(this)} placeholder="输入邮箱数据发到你的邮箱（可选）"
-                        onSearch={this.onInputSubmit}
-                        enterButton="Search"
-                        size="large"
-                    >
-                    </Search>
+                    <div className="DaysContent-content-search">
+                        <Search type="Search" className="DaysContent-content-searchButton" onChange={this.onInputChange.bind(this)} placeholder="input search text"
+                            onSearch={this.onInputSubmit}
+                            enterButton="Search"
+                            size="large"
+                        >
+                        </Search>
+                        <Search type="Search" className="DaysContent-content-searchMail" onChange={this.onInputChange.bind(this)} placeholder="输入邮箱将该数据发到你的邮箱（可选）"
+                            onSearch={this.onInputSubmit}
+                            enterButton="发送"
+                            size="large"
+                        >
+                        </Search>
 
-                </div>
+                    </div>
 
                     <div className={'DaysContent-content-list'}>
+
+                        <Card title="Your Coin" bordered={false} >
                         <p>当前币种及价格 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.name + '  ' + this.state.temCoin.data.quotes.USD.price : ' /'}</p>
                         <p>当前总量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.max_supply : ' /'}</p>
                         <p>当前流通量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.circulating_supply : '/'}</p>
@@ -111,6 +114,8 @@ class DaysContent extends Component {
                         <p>24小时流通量 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.volume_24h / this.state.temCoin.data.quotes.USD.price : '/'}</p>
                         <p>24小时流通量占流通量百分比 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.volume_24h / this.state.temCoin.data.quotes.USD.price / this.state.temCoin.data.circulating_supply : '/'}</p>
                         <p>24小时价格涨跌 : {this.state.temCoin.data != undefined ? this.state.temCoin.data.quotes.USD.percent_change_24h : '/'}</p>
+                        </Card>
+                      
                     </div>
 
                 </div>

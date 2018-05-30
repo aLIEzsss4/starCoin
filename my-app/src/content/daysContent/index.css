@@ -5,8 +5,8 @@
 .DaysContent header{
     width: 70%;
     margin: 0 auto;
-    color: #000;
-    background-color: #a4c7c7;
+    color: #fff;
+    background-color: #ff000000;
     font-size: 10px; 
 }
 .DaysContent header .MuiTab-label-55{
@@ -16,23 +16,31 @@
 .DaysContent-content{
     width:70%;
     margin: 0 auto;
+    position: relative;
 }
 .DaysContent .DaysContent-content .ant-input-search{
     display: block;
     margin-top: 20px;
 }
 .DaysContent .DaysContent-content span input{
-    width: 258px;
-    height: 35px;
+    width: 73%;
+    height: 54px;
     display: block;
     margin: 50px auto 19px auto;
     border-radius: 4px;
-    border: 1px solid #9ac0c0;
+    border: 1px solid #c7eff4;
+    background: #ff000000;
+}
+
+.DaysContent .DaysContent-content span input::placeholder{
+    color:#fff;
+    text-align: center;
 }
 .DaysContent .DaysContent-content span button{
+    color: #fff;
     width: 58px;
     height: 30px;
-    background: #93c5c7;
+    background: #0c9aa06e;
     border-radius: 4px;
     border: 0;
 }
@@ -40,11 +48,23 @@
 
 }
 .DaysContent-content-search {
+    display: inline-block;
+    width: 87%;
+
+}
+.DaysContent-content-search .DaysContent-content-searchButton{
+    width:50%;
     float: left;
+
+}
+.DaysContent-content-search .DaysContent-content-searchMail{
+    width:50%; 
+    float: right;
 }
 .DaysContent-content-list{
-    overflow: hidden;
-    margin-top: 4%;
     /* left: 10px; */
-    margin-right: 21%;
+    position: relative;
+    top: 30px;
+    color: #fff;
+    
 }
