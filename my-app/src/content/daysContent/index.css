@@ -144,15 +144,17 @@
     color:red;   
 }
 
-@media (max-device-width :1080px)  and (-webkit-min-device-pixel-ratio : 3){
+@media (max-device-width :822px)  and (-webkit-min-device-pixel-ratio : 3){
     .DaysContent-content-list .ant-card-body {
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
+      word-break: break-all;
+      text-align: center;
 
     }
-    .DaysContent-content-list .ant-card-body{
-        word-break: break-all;
-        margin: 0 auto;
-        width: 128px;
-        text-align: center;
+    .DaysContent-content-list .ant-card-body div{
+        margin: 0;
+        width: 50%;
+
     }
   }
