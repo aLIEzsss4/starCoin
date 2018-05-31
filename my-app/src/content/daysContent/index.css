@@ -144,7 +144,7 @@
     color:red;   
 }
 
-@media (max-device-width :822px)  and (-webkit-min-device-pixel-ratio : 3){
+@media (max-device-width :822px){
     .DaysContent-content-list .ant-card-body {
       flex-direction: row;
       flex-wrap: wrap;
