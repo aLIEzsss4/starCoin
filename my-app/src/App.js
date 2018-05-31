@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
+import './font/download/font_689607_1btcyibvuklkrzfr/iconfont.css'
 
 //componment
 import DaysContent from './content/daysContent/index'
