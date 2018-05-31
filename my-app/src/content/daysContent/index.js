@@ -165,9 +165,8 @@ class DaysContent extends Component {
                 </div>
 
                 <div className={'DaysContent-content-footer'}>
-                    dasda
-
-                    </div>
+                    <p>搜索完毕币种才可以发送邮件，否则会失败，建议使用简称搜索，如果简称搜索不到再换成全名搜索，不区分大小写，bug请提jose.xiaohang@gmail.com</p>
+                </div>
 
             </div>
         )
