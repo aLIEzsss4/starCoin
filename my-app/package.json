@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm ./build/favicon.ico && mv ./dist/favicon.ico ./build/ && mv ./dist/index.html ./build/ && rm -rf dist && mv ./build/ ./dist/ ",
+    "build": "react-scripts build && rm ./build/favicon.ico && mv ./dist/favicon.ico ./build/ && rm -rf dist && mv ./build/ ./dist/ ",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "mvIco": " rm ./build/favicon.ico && cp ./dist/favicon.ico ./build/ && cp ./dist/index.html ./build/ && rm -rf dist && mv build dist"
