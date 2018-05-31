@@ -155,6 +155,8 @@
     .DaysContent-content-list .ant-card-body div{
         margin: 0;
         width: 50%;
-
+    }
+    .DaysContent-content-list .ant-card-body div p{
+        font-size: 1.1rem;
     }
   }
