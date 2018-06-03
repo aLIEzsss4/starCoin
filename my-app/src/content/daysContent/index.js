@@ -7,6 +7,7 @@ import './index.css';
 //method
 import _ from 'lodash';
 
+import GoogleTrends from    '../../tool/googleTrend/googleTrend'
 
 //styles
 import { Card } from 'antd';
@@ -37,7 +38,10 @@ class DaysContent extends Component {
         }
 
     }
+    componentWillMount() {
 
+
+    }
     componentDidMount() {
         this.onInputSubmit()
     }
@@ -48,9 +52,7 @@ class DaysContent extends Component {
     }
 
     onInputChange = (event) => {
-        console.log(event.target.id)
         if (event.target.id == 'DaysContent-content-searchButton') {
-            // console.log(event.target.value);
             this.setState({
                 inputValue: event.target.value
             })
@@ -73,7 +75,6 @@ class DaysContent extends Component {
                         }
                     })
                 }, () => {
-                    console.log(this.state)
                     if (this.state.calCoin != null) {
                         fetch(`https://api.coinmarketcap.com/v2/ticker/${this.state.calCoin.id}||1/`).then((res) => {
                             res.json().then(singleCoin => {
@@ -94,7 +95,6 @@ class DaysContent extends Component {
         })
     }
     sendMail() {
-        console.log(this.state.temCoin)
         if (this.state.mail.toString().includes('@') && this.state.temCoin && this.state.temCoin.data != undefined) {
             fetch('http://149.28.51.186:3001/sendMail', {
                 method: 'POST', // or 'PUT'
@@ -105,11 +105,7 @@ class DaysContent extends Component {
                     'Content-Type': 'application/json'
                 }
             }).then(res => {
-                console.log(res);
                 message.info('您的邮件已发送！若未收到请到垃圾箱查看！', 5)
-                // res.json().then(index=>{
-                //     console.log(index)
-                // })
             }).catch(err => {
                 console.log('Something went wrong  ' + err)
             })
@@ -167,7 +163,7 @@ class DaysContent extends Component {
                 <div className={'DaysContent-content-footer'}>
                     <p>搜索完毕币种才可以发送邮件，否则会失败，建议使用简称搜索，如果简称搜索不到再换成全名搜索，不区分大小写，bug请提jose.xiaohang@gmail.com</p>
                 </div>
-
+                <GoogleTrends/>    
             </div>
         )
 
